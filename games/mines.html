@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mines - Lucky Play</title>
+
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+
+        .game {
+            margin: 25px auto;
+            padding: 25px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+
+        .box {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 10px;
+            background: #334155;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+
+        .box.open {
+            background: #22c55e;
+        }
+
+
+        .box.mine {
+            background: #ef4444;
+        }
+
+
+        #status {
+            color: #cbd5e1;
+            margin: 15px 0;
+            min-height: 25px;
+        }
+
+
+        #points {
+            color: #22c55e;
+            font-size: 18px;
+            min-height: 25px;
+        }
+
+
+        .restart {
+            width: 100%;
+            max-width: 300px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Mines Demo
+    </p>
+
+</div>
+
+
+
+<div class="game">
+
+    <h2>💣 Find the Safe Boxes</h2>
+
+
+    <p id="status">
+        Kisi bhi box ko open karo.
+    </p>
+
+
+    <div id="points">
+        Virtual points game.
+    </div>
+
+
+    <div
+        class="grid"
+        id="grid"
+    ></div>
+
+
+    <button
+        class="restart"
+        onclick="startGame()"
+    >
+
+        🔄 New Game
+
+    </button>
+
+
+    <br>
+
+
+    <a href="../index.html">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<script>
+
+    const totalBoxes = 16;
+
+    const mineCount = 4;
+
+    let mines = [];
+
+    let gameOver = false;
+
+
+    function addPoints(points) {
+
+        let balance =
+            Number(
+                localStorage.getItem(
+                    "luckyPlayBalance"
+                )
+            ) || 1000;
+
+
+        balance += points;
+
+
+        localStorage.setItem(
+            "luckyPlayBalance",
+            balance
+        );
+
+    }
+
+
+    function startGame() {
+
+        mines = [];
+
+        gameOver = false;
+
+
+        const grid =
+            document.getElementById(
+                "grid"
+            );
+
+
+        grid.innerHTML = "";
+
+
+        while (
+            mines.length < mineCount
+        ) {
+
+            const random =
+                Math.floor(
+                    Math.random() * totalBoxes
+                );
+
+
+            if (
+                !mines.includes(random)
+            ) {
+
+                mines.push(random);
+
+            }
+
+        }
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Safe boxes dhundo!";
+
+
+        document.getElementById(
+            "points"
+        ).textContent =
+            "Virtual points game.";
+
+
+        for (
+            let i = 0;
+            i < totalBoxes;
+            i++
+        ) {
+
+            const box =
+                document.createElement(
+                    "button"
+                );
+
+
+            box.className = "box";
+
+            box.textContent = "?";
+
+
+            box.onclick = function() {
+
+                openBox(i, box);
+
+            };
+
+
+            grid.appendChild(box);
+
+        }
+
+    }
+
+
+    function openBox(index, box) {
+
+        if (
+            gameOver ||
+            box.classList.contains("open")
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            mines.includes(index)
+        ) {
+
+            box.textContent = "💣";
+
+            box.classList.add("mine");
+
+            gameOver = true;
+
+
+            document.getElementById(
+                "status"
+            ).textContent =
+                "💣 Boom! Demo round khatam.";
+
+
+            document.getElementById(
+                "points"
+            ).textContent =
+                "Is round me points nahi mile.";
+
+
+            return;
+
+        }
+
+
+        box.textContent = "💎";
+
+        box.classList.add("open");
+
+
+        const points = 10;
+
+
+        addPoints(points);
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "🎉 Safe! Ek aur box try karo.";
+
+
+        document.getElementById(
+            "points"
+        ).textContent =
+            "+" +
+            points +
+            " virtual points added!";
+
+    }
+
+
+    startGame();
+
+</script>
+
+
+</body>
+
+</html>
