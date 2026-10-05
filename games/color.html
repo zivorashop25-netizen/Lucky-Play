@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Color Pick - Lucky Play</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+        .game {
+            margin: 25px auto;
+            padding: 30px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+        #target {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+
+        .colors {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 350px;
+            margin: 25px auto;
+        }
+
+        .color-button {
+            height: 80px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .red {
+            background: #ef4444;
+        }
+
+        .blue {
+            background: #3b82f6;
+        }
+
+        .green {
+            background: #22c55e;
+        }
+
+        .yellow {
+            background: #eab308;
+        }
+
+        #result {
+            min-height: 30px;
+            font-size: 19px;
+            color: #cbd5e1;
+            margin: 20px 0;
+        }
+
+        .new-game {
+            width: 100%;
+            max-width: 300px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #8b5cf6;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Color Pick
+    </p>
+
+</div>
+
+
+
+<div class="game">
+
+    <h2>🎨 Pick the Lucky Color</h2>
+
+    <p>
+        Neeche se ek color choose karo.
+    </p>
+
+
+    <div id="target">
+        Lucky color choose karo!
+    </div>
+
+
+    <div class="colors">
+
+        <button
+            class="color-button red"
+            onclick="pickColor('Red')"
+        >
+            🔴 Red
+        </button>
+
+
+        <button
+            class="color-button blue"
+            onclick="pickColor('Blue')"
+        >
+            🔵 Blue
+        </button>
+
+
+        <button
+            class="color-button green"
+            onclick="pickColor('Green')"
+        >
+            🟢 Green
+        </button>
+
+
+        <button
+            class="color-button yellow"
+            onclick="pickColor('Yellow')"
+        >
+            🟡 Yellow
+        </button>
+
+    </div>
+
+
+    <div id="result">
+        Apna color select karo.
+    </div>
+
+
+    <button
+        class="new-game"
+        onclick="newGame()"
+    >
+
+        🔄 New Round
+
+    </button>
+
+
+    <br>
+
+
+    <a href="../index.html">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<script>
+
+    const colors = [
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow"
+    ];
+
+
+    let luckyColor;
+
+
+    function newGame() {
+
+        const randomIndex =
+            Math.floor(
+                Math.random() * colors.length
+            );
+
+
+        luckyColor =
+            colors[randomIndex];
+
+
+        document.getElementById("result").textContent =
+            "Apna lucky color choose karo!";
+
+    }
+
+
+    function pickColor(selectedColor) {
+
+        if (selectedColor === luckyColor) {
+
+            document.getElementById("result").textContent =
+                "🎉 Sahi! " +
+                selectedColor +
+                " lucky color tha.";
+
+        } else {
+
+            document.getElementById("result").textContent =
+                "🙂 Is baar nahi. Lucky color " +
+                luckyColor +
+                " tha.";
+
+        }
+
+    }
+
+
+    newGame();
+
+</script>
+
+
+</body>
+
+</html>
