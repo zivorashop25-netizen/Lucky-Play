@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Add Virtual Points - Lucky Play</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 22px 15px;
+        }
+
+        .game {
+            max-width: 500px;
+            margin: 25px auto;
+            padding: 25px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+        }
+
+        .balance {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .balance h2 {
+            margin-bottom: 10px;
+        }
+
+        #balance {
+            font-size: 32px;
+            font-weight: bold;
+            color: #22c55e;
+        }
+
+        .points-button {
+            width: 100%;
+            padding: 16px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .points-button:active {
+            transform: scale(0.98);
+        }
+
+        #message {
+            min-height: 30px;
+            margin: 20px 0;
+            color: #cbd5e1;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Add Virtual Points
+    </p>
+
+</div>
+
+
+<div class="game">
+
+
+    <div class="balance">
+
+        <h2>💰 Your Balance</h2>
+
+        <div>
+            <span id="balance">1000</span>
+            Points
+        </div>
+
+    </div>
+
+
+    <h2>➕ Add Points</h2>
+
+
+    <button
+        class="points-button"
+        onclick="addPoints(100)"
+    >
+        +100 Points
+    </button>
+
+
+    <button
+        class="points-button"
+        onclick="addPoints(500)"
+    >
+        +500 Points
+    </button>
+
+
+    <button
+        class="points-button"
+        onclick="addPoints(1000)"
+    >
+        +1000 Points
+    </button>
+
+
+    <div id="message">
+        Virtual points only.
+    </div>
+
+
+    <p class="note">
+        Free-play demo. No real money or cash withdrawal.
+    </p>
+
+
+    <a href="index.html">
+        ← Back to Home
+    </a>
+
+
+</div>
+
+
+<script>
+
+    function getBalance() {
+
+        return Number(
+            localStorage.getItem(
+                "luckyPlayBalance"
+            )
+        ) || 1000;
+
+    }
+
+
+    function showBalance() {
+
+        document.getElementById(
+            "balance"
+        ).textContent =
+            getBalance();
+
+    }
+
+
+    function addPoints(points) {
+
+        let balance =
+            getBalance();
+
+        balance += points;
+
+        localStorage.setItem(
+            "luckyPlayBalance",
+            balance
+        );
+
+        showBalance();
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            "🎉 +" +
+            points +
+            " virtual points added!";
+
+    }
+
+
+    showBalance();
+
+</script>
+
+
+</body>
+
+</html>
