@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dice - Lucky Play</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+        .game {
+            margin: 25px auto;
+            padding: 30px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+        #dice {
+            font-size: 90px;
+            margin: 30px 0;
+        }
+
+        #result {
+            font-size: 22px;
+            margin-bottom: 25px;
+            min-height: 30px;
+        }
+
+        #points {
+            color: #22c55e;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #475569;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Dice Game
+    </p>
+
+</div>
+
+
+
+<div class="game">
+
+    <div id="dice">
+        🎲
+    </div>
+
+
+    <div id="result">
+        Dice roll karne ke liye button dabao.
+    </div>
+
+
+    <div id="points">
+        Virtual points game.
+    </div>
+
+
+    <button
+        onclick="rollDice()"
+        id="rollButton"
+    >
+
+        🎲 Roll Dice
+
+    </button>
+
+
+    <br>
+
+
+    <a href="../index.html">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<script>
+
+    function addPoints(points) {
+
+        let balance =
+            Number(
+                localStorage.getItem(
+                    "luckyPlayBalance"
+                )
+            ) || 1000;
+
+
+        balance += points;
+
+
+        localStorage.setItem(
+            "luckyPlayBalance",
+            balance
+        );
+
+    }
+
+
+    function rollDice() {
+
+        const button =
+            document.getElementById(
+                "rollButton"
+            );
+
+
+        button.disabled = true;
+
+
+        const number =
+            Math.floor(
+                Math.random() * 6
+            ) + 1;
+
+
+        const diceFaces = [
+
+            "⚀",
+            "⚁",
+            "⚂",
+            "⚃",
+            "⚄",
+            "⚅"
+
+        ];
+
+
+        document.getElementById(
+            "dice"
+        ).textContent =
+            diceFaces[number - 1];
+
+
+        document.getElementById(
+            "result"
+        ).textContent =
+            "Aapka number: " + number;
+
+
+        const points =
+            number * 10;
+
+
+        addPoints(points);
+
+
+        document.getElementById(
+            "points"
+        ).textContent =
+            "🎉 +" +
+            points +
+            " virtual points added!";
+
+
+        setTimeout(function() {
+
+            button.disabled = false;
+
+        }, 800);
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
