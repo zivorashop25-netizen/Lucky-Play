@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lucky Draw - Lucky Play</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+        .game {
+            margin: 25px auto;
+            padding: 30px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+        #box {
+            font-size: 90px;
+            margin: 30px 0;
+        }
+
+        #result {
+            min-height: 30px;
+            color: #cbd5e1;
+            font-size: 19px;
+            margin: 20px 0;
+        }
+
+        button {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Lucky Draw
+    </p>
+
+</div>
+
+
+
+<div class="game">
+
+    <h2>🎁 Lucky Draw</h2>
+
+    <p>
+        Button dabao aur virtual points ka draw dekho.
+    </p>
+
+
+    <div id="box">
+        🎁
+    </div>
+
+
+    <div id="result">
+        Draw start karne ke liye button dabao.
+    </div>
+
+
+    <button
+        id="drawButton"
+        onclick="startDraw()"
+    >
+
+        🎁 Start Lucky Draw
+
+    </button>
+
+
+    <br>
+
+
+    <a href="../index.html">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<script>
+
+    let drawing = false;
+
+
+    function startDraw() {
+
+        if (drawing) {
+            return;
+        }
+
+
+        drawing = true;
+
+
+        const button =
+            document.getElementById("drawButton");
+
+
+        const box =
+            document.getElementById("box");
+
+
+        const result =
+            document.getElementById("result");
+
+
+        button.disabled = true;
+
+
+        result.textContent =
+            "🎁 Draw chal raha hai...";
+
+
+        let count = 0;
+
+
+        const animation =
+            setInterval(function() {
+
+                const emojis = [
+                    "🎁",
+                    "🎉",
+                    "✨",
+                    "🎁"
+                ];
+
+
+                box.textContent =
+                    emojis[count % emojis.length];
+
+
+                count++;
+
+
+                if (count >= 12) {
+
+                    clearInterval(animation);
+
+
+                    const points =
+                        Math.floor(
+                            Math.random() * 91
+                        ) + 10;
+
+
+                    box.textContent = "🎉";
+
+
+                    result.textContent =
+                        "🎊 Aapko " +
+                        points +
+                        " virtual points mile!";
+
+
+                    button.disabled = false;
+
+                    drawing = false;
+
+                }
+
+            }, 150);
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
