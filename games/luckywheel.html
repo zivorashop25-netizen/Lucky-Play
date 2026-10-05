@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lucky Wheel - Lucky Play</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+        .game {
+            margin: 25px auto;
+            padding: 25px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+        #pointer {
+            font-size: 35px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: -15px;
+        }
+
+        #wheel {
+            width: 270px;
+            height: 270px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 8px solid #334155;
+
+            background: conic-gradient(
+                #22c55e 0deg 45deg,
+                #3b82f6 45deg 90deg,
+                #eab308 90deg 135deg,
+                #ef4444 135deg 180deg,
+                #a855f7 180deg 225deg,
+                #f97316 225deg 270deg,
+                #14b8a6 270deg 315deg,
+                #ec4899 315deg 360deg
+            );
+
+            transition: transform 4s ease-out;
+        }
+
+        #result {
+            min-height: 30px;
+            color: #cbd5e1;
+            font-size: 19px;
+            margin: 20px 0;
+        }
+
+        #spinButton {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #spinButton:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Lucky Wheel
+    </p>
+
+</div>
+
+
+
+<div class="game">
+
+    <h2>🍀 Lucky Wheel</h2>
+
+    <p>
+        Wheel spin karo aur virtual points dekho.
+    </p>
+
+
+    <div id="pointer">
+        🔻
+    </div>
+
+
+    <div id="wheel"></div>
+
+
+    <div id="result">
+        Spin dabao!
+    </div>
+
+
+    <button
+        id="spinButton"
+        onclick="spinWheel()"
+    >
+
+        🎡 Spin Wheel
+
+    </button>
+
+
+    <br>
+
+
+    <a href="../index.html">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<script>
+
+    let rotation = 0;
+
+    let spinning = false;
+
+
+    function spinWheel() {
+
+        if (spinning) {
+            return;
+        }
+
+
+        spinning = true;
+
+
+        document.getElementById("spinButton").disabled =
+            true;
+
+
+        document.getElementById("result").textContent =
+            "🎡 Wheel ghoom raha hai...";
+
+
+        const extraRotation =
+            1440 +
+            Math.floor(Math.random() * 720);
+
+
+        rotation += extraRotation;
+
+
+        document.getElementById("wheel").style.transform =
+            "rotate(" + rotation + "deg)";
+
+
+        setTimeout(function() {
+
+            const points =
+                Math.floor(
+                    Math.random() * 91
+                ) + 10;
+
+
+            document.getElementById("result").textContent =
+                "🎉 Aapko " +
+                points +
+                " virtual points mile!";
+
+
+            document.getElementById("spinButton").disabled =
+                false;
+
+
+            spinning = false;
+
+        }, 4000);
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
