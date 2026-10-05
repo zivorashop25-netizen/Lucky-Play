@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Number Guess - Lucky Play</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+        .game {
+            margin: 25px auto;
+            padding: 30px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+        #numberBox {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 30px 0;
+        }
+
+        input {
+            width: 100%;
+            max-width: 250px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #475569;
+        }
+
+        #result {
+            font-size: 20px;
+            color: #cbd5e1;
+            margin: 20px 0;
+            min-height: 25px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="top">
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Number Guess
+    </p>
+
+</div>
+
+
+
+<div class="game">
+
+    <h2>🔢 Guess the Number</h2>
+
+    <p>
+        1 se 10 ke beech ek number guess karo.
+    </p>
+
+
+    <div id="numberBox">
+        ❓
+    </div>
+
+
+    <input
+        type="number"
+        id="guessInput"
+        min="1"
+        max="10"
+        placeholder="1 - 10"
+    >
+
+
+    <button
+        id="guessButton"
+        onclick="checkGuess()"
+    >
+
+        🎯 Guess
+
+    </button>
+
+
+    <div id="result">
+        Apna guess enter karo.
+    </div>
+
+
+    <button
+        id="newGameButton"
+        onclick="newGame()"
+        style="display: none;"
+    >
+
+        🔄 New Game
+
+    </button>
+
+
+    <br>
+
+
+    <a href="../index.html">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<script>
+
+    let luckyNumber;
+
+    let gameOver = false;
+
+
+    function newGame() {
+
+        luckyNumber =
+            Math.floor(Math.random() * 10) + 1;
+
+        gameOver = false;
+
+
+        document.getElementById("numberBox").textContent =
+            "❓";
+
+
+        document.getElementById("result").textContent =
+            "1 se 10 ke beech number guess karo.";
+
+
+        document.getElementById("guessInput").value =
+            "";
+
+
+        document.getElementById("guessInput").disabled =
+            false;
+
+
+        document.getElementById("guessButton").disabled =
+            false;
+
+
+        document.getElementById("newGameButton").style.display =
+            "none";
+
+    }
+
+
+    function checkGuess() {
+
+        if (gameOver) {
+            return;
+        }
+
+
+        const input =
+            document.getElementById("guessInput");
+
+
+        const guess =
+            Number(input.value);
+
+
+        if (
+            !guess ||
+            guess < 1 ||
+            guess > 10
+        ) {
+
+            document.getElementById("result").textContent =
+                "⚠️ 1 se 10 ke beech number enter karo.";
+
+            return;
+
+        }
+
+
+        document.getElementById("numberBox").textContent =
+            luckyNumber;
+
+
+        if (guess === luckyNumber) {
+
+            document.getElementById("result").textContent =
+                "🎉 Sahi guess! Aapne lucky number pakad liya.";
+
+        } else {
+
+            document.getElementById("result").textContent =
+                "🙂 Is baar match nahi hua. Lucky number " +
+                luckyNumber +
+                " tha.";
+
+        }
+
+
+        gameOver = true;
+
+
+        input.disabled = true;
+
+
+        document.getElementById("guessButton").disabled =
+            true;
+
+
+        document.getElementById("newGameButton").style.display =
+            "block";
+
+    }
+
+
+    newGame();
+
+</script>
+
+
+</body>
+
+</html>
