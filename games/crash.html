@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crash Demo - Lucky Play</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .top {
+            background: #1e293b;
+            padding: 20px;
+        }
+
+        .game {
+            margin: 25px 15px;
+            padding: 30px 15px;
+            background: #1e293b;
+            border-radius: 15px;
+        }
+
+        #multiplier {
+            font-size: 55px;
+            font-weight: bold;
+            margin: 40px 0;
+        }
+
+        #status {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        button {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        button:disabled {
+            background: #475569;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top">
+        <h1>🚀 Lucky Play</h1>
+        <p>Crash Demo</p>
+    </div>
+
+    <div class="game">
+
+        <div id="multiplier">1.00x</div>
+
+        <p id="status">
+            Start dabao aur multiplier dekho.
+        </p>
+
+        <button id="startButton" onclick="startGame()">
+            Start Game
+        </button>
+
+        <br>
+
+        <a href="../index.html">
+            ← Back to Home
+        </a>
+
+    </div>
+
+    <script>
+
+        let multiplier = 1.00;
+        let running = false;
+        let timer;
+
+        function startGame() {
+
+            if (running) {
+                return;
+            }
+
+            running = true;
+
+            multiplier = 1.00;
+
+            document.getElementById("multiplier").textContent =
+                multiplier.toFixed(2) + "x";
+
+            document.getElementById("status").textContent =
+                "Game chal raha hai...";
+
+            document.getElementById("startButton").disabled = true;
+
+            timer = setInterval(function() {
+
+                multiplier += 0.05;
+
+                document.getElementById("multiplier").textContent =
+                    multiplier.toFixed(2) + "x";
+
+                // Demo round automatically ends
+                if (multiplier >= 5.00) {
+
+                    clearInterval(timer);
+
+                    running = false;
+
+                    document.getElementById("status").textContent =
+                        "Round complete!";
+
+                    document.getElementById("startButton").disabled = false;
+                }
+
+            }, 100);
+
+        }
+
+    </script>
+
+</body>
+</html>
