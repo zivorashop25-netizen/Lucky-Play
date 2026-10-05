@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lucky Play</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🎮 Lucky Play</h1>
+
+    <p>
+        Play • Have Fun • Win Virtual Points
+    </p>
+
+</header>
+
+
+<main>
+
+
+    <!-- WALLET -->
+
+    <section class="wallet">
+
+        <h2>💰 Virtual Wallet</h2>
+
+        <p>
+            Balance:
+            <span id="balance">1000</span>
+            Points
+        </p>
+
+    </section>
+
+
+
+    <!-- GAMES -->
+
+    <section class="games">
+
+        <h2>🎮 Games</h2>
+
+
+        <div class="game-list">
+
+
+            <!-- CRASH -->
+
+            <div class="game-card">
+
+                <h3>🚀 Crash Demo</h3>
+
+                <p>
+                    Try the virtual crash game.
+                </p>
+
+                <a href="games/crash.html">
+
+                    <button>
+                        Play
+                    </button>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- DICE -->
+
+            <div class="game-card">
+
+                <h3>🎲 Dice</h3>
+
+                <p>
+                    Roll the virtual dice.
+                </p>
+
+                <a href="games/dice.html">
+
+                    <button>
+                        Play
+                    </button>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- MINES -->
+
+            <div class="game-card">
+
+                <h3>💣 Mines</h3>
+
+                <p>
+                    Find the safe boxes.
+                </p>
+
+                <button
+                    onclick="playGame('Mines')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SPIN WHEEL -->
+
+            <div class="game-card">
+
+                <h3>🎡 Spin Wheel</h3>
+
+                <p>
+                    Spin and get virtual points.
+                </p>
+
+                <button
+                    onclick="playGame('Spin Wheel')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- PLINKO -->
+
+            <div class="game-card">
+
+                <h3>🔵 Plinko</h3>
+
+                <p>
+                    Drop the virtual ball.
+                </p>
+
+                <button
+                    onclick="playGame('Plinko')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- NUMBER GUESS -->
+
+            <div class="game-card">
+
+                <h3>🔢 Number Guess</h3>
+
+                <p>
+                    Guess the lucky number.
+                </p>
+
+                <button
+                    onclick="playGame('Number Guess')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- COLOR PICK -->
+
+            <div class="game-card">
+
+                <h3>🎨 Color Pick</h3>
+
+                <p>
+                    Pick a virtual lucky color.
+                </p>
+
+                <button
+                    onclick="playGame('Color Pick')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- HIGH LOW -->
+
+            <div class="game-card">
+
+                <h3>🃏 High / Low</h3>
+
+                <p>
+                    Play with virtual cards.
+                </p>
+
+                <button
+                    onclick="playGame('High Low')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- LUCKY WHEEL -->
+
+            <div class="game-card">
+
+                <h3>🍀 Lucky Wheel</h3>
+
+                <p>
+                    Spin the lucky wheel.
+                </p>
+
+                <button
+                    onclick="playGame('Lucky Wheel')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+
+            <!-- LUCKY DRAW -->
+
+            <div class="game-card">
+
+                <h3>🎁 Lucky Draw</h3>
+
+                <p>
+                    Try the virtual lucky draw.
+                </p>
+
+                <button
+                    onclick="playGame('Lucky Draw')">
+
+                    Play
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- HISTORY -->
+
+    <section class="history">
+
+        <h2>
+            📜 Game History
+        </h2>
+
+        <div id="historyList">
+
+            <p>
+                No games played yet.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 Lucky Play
+    </p>
+
+    <p>
+        Free-play virtual points only.
+    </p>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
